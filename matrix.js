@@ -9,6 +9,8 @@ function Matrix(containerId, rows, cols) {
 	// число столбцов
 	this.cols = cols;
 
+	that = this;
+
 	// создание сетки
 	this.create = function() {
 		var n = this.rows * this.cols;
@@ -54,23 +56,20 @@ function Matrix(containerId, rows, cols) {
 	}
 
 	this.setCell = function(row, col, val, cls) {
-		var index = this.getIndex(row,col);
+		var index = this.getIndex(row, col);
 		val ? $("#" + this.containerId).children().eq(index).addClass(cls) :
 			$("#" + this.containerId).children().eq(index).removeClass(cls);
 	}
 
 	this.getCell = function(row, col, cls) {
-		var index = this.getIndex(row,col);
-		return $("#" + this.containerId).children().eq(index).hasClass(cls)
+		var index = this.getIndex(row, col);
+		return $("#" + this.containerId).children().eq(index).hasClass(cls);
+	}
+	this.generateObject = function(cls) {
+		this.setCell(Math.floor((Math.random() * 20) + 1), Math.floor((Math.random() * 20) + 1), true, cls);
 	}
 
-	this.setFruit = function() {
-		$("#" + this.containerId).children().eq(25).addClass('fruit') 
-	}
 }
-
-
-
 // window.onload = function() {
 // 	createMatrix();
 // 	var player_x = 10;
