@@ -13,53 +13,56 @@ var KEY_CODE_PL2 = {
 	DOWN: 83
 
 };
-$("#information").hide();
 var intervalGameplay;
 $(document).ready(function() {
+	$("#information").hide();
 	$("#resetgame").on("click", function() {
-	  window.location = window.location;
+		window.location = window.location;
 	});
 	$("#startgame").on("click", function() {
 		$("#startgame").attr("disabled", true)
 		$("#rules").attr("disabled", true)
-		intervalGameplay = setInterval(gameplay, 200);
+		intervalGameplay = setInterval(function() { gameplay(snake1); }, 200);
 	});
 	$("#rules").click(function() {
 		if ($("#matrix1").css('opacity') != 0) {
 			$("#matrix1").hide(1000);
+			$("#rules").attr("value", "К игре");
+			$("#startgame").attr("disabled", true);
 			$("#matrix1").animate({
 				opacity: 0
-			}, 1000);
-			$("#information").animate({
-				opacity: 1
-			}, 1000);
+			}, 10);
+
+			$("#information").show(1000);
 		} else {
-			$("#matrix1").show(1000);
+			$("#startgame").attr("disabled", false)
+			$("#rules").attr("value", "Правила");
+			$("#information").hide(1000);
 			$("#matrix1").animate({
 				opacity: 1
-			}, 1000);
-			$("#information").animate({
-				opacity: 0
-			}, 1000);
+			}, 10);
+			$("#matrix1").show(1000);
+
 		}
-
-		// if ($("#matrix1").css('opacity') != 0) {
-		// 	$("#matrix1").animate({
-		// 		opacity: 0
-		// 	}, 1000);
-		// 	$("#information").animate({
-		// 		opacity: 1
-		// 	}, 1000);
-		// } else {
-		// 	$("#matrix1").animate({
-		// 		opacity: 1
-		// 	}, 1000);
-		// 	$("#information").animate({
-		// 		opacity: 0
-		// 	}, 1000);
-		// }
-
 	});
+
+	// if ($("#matrix1").css('opacity') != 0) {
+	// 	$("#matrix1").animate({
+	// 		opacity: 0
+	// 	}, 1000);
+	// 	$("#information").animate({
+	// 		opacity: 1
+	// 	}, 1000);
+	// } else {
+	// 	$("#matrix1").animate({
+	// 		opacity: 1
+	// 	}, 1000);
+	// 	$("#information").animate({
+	// 		opacity: 0
+	// 	}, 1000);
+	// }
+
+
 	var m1 = new Matrix('matrix1', 20, 20);
 	m1.create();
 
@@ -71,30 +74,32 @@ $(document).ready(function() {
 
 
 
-	var square2 = new Square(m2, 1, 2, 'right', 'designNumb');
-	square2.create();
+	var square2 = new Square(m2, 1, 3, 'right', 'designNumb');
 
 	var snake1 = new Snake(m1, square);
 	var i = 0;
 
+	var snake2 = new Snake(m2, square2);
+	var i = 0;
+
 	var once;
-	var gameplay = function() {
-		if (((square.body.x > square.matrix.cols - 1) && (square.course == 'down')) || ((square.body.y > square.matrix.cols - 1) && (square.course == 'right')) || ((square.body.x < 2) && (square.course == 'up')) || ((square.body.y < 2) && (square.course == 'left'))) {
-			square.alive = false;
+	var gameplay = function(snake) {
+		if (((snake.sq1.body.x > snake.sq1.matrix.cols - 1) && (snake.sq1.course == 'down')) || ((snake.sq1.body.y > snake.sq1.matrix.cols - 1) && (snake.sq1.course == 'right')) || ((snake.sq1.body.x < 2) && (snake.sq1.course == 'up')) || ((snake.sq1.body.y < 2) && (snake.sq1.course == 'left'))) {
+			snake.sq1.alive = false;
 		}
-		snake1.move();
+		snake.move();
 		once = false;
 
 
 		if (i % 40 == 0)
-			m1.generateObject('fruit', 'designNumb');
+			snake.matrix.generateObject('fruit', 'designNumb');
 
 
 
 		// square.move();
 		// square2.move();
 
-		if (!square.alive) {
+		if (!snake.sq1.alive) {
 			clearInterval(intervalGameplay)
 			alert("FIN");
 			$("#resetgame").attr("disabled", false)
@@ -123,7 +128,28 @@ $(document).ready(function() {
 					square.course = 'down';
 				once = true;
 
+			} else if (event.which == KEY_CODE_PL2.RIGHT) {
+				if (square2.course != 'left')
+					square2.course = 'right';
+				once = true;
+
+			} else if (event.which == KEY_CODE_PL2.UP) {
+				if (square2.course != 'down')
+					square2.course = 'up';
+				once = true;
+
+			} else if (event.which == KEY_CODE_PL2.DOWN) {
+				if (square2.course != 'up')
+					square2.course = 'down';
+				once = true;
+
+			} else if (event.which == KEY_CODE_PL2.LEFT) {
+				if (square2.course != 'right')
+					square2.course = 'left';
+				once = true;
+
 			}
+
 		}
 	});
 

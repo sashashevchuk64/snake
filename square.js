@@ -37,6 +37,8 @@ function Square(matrix, row, col, course, cls) {
 
 
 function Snake(matrix, sq1) {
+	this.matrix = matrix;
+	this.sq1 = sq1;
 
 	this.body = [{x :sq1.body.x, y : sq1.body.y }, {x : sq1.body.x, y : sq1.body.y-1}, {x : sq1.body.x, y: sq1.body.y-2}];
 	var that = this;

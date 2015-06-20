@@ -67,8 +67,8 @@ function Matrix(containerId, rows, cols) {
 		return $("#" + this.containerId).children().eq(index).hasClass(cls);
 	}
 	this.generateObject = function(clsObject, clsMain) {
-		randomRow = Math.floor((Math.random() * 20) + 1);
-		randomCol = Math.floor((Math.random() * 20) + 1);
+		randomRow = Math.floor((Math.random() * rows) + 1);
+		randomCol = Math.floor((Math.random() * rows) + 1);
 		if (!this.getCell(randomRow, randomCol, clsMain))
 			this.setCell(randomRow, randomCol, true, clsObject);
 	}

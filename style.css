@@ -21,12 +21,16 @@
 
 #information 
 {
-	opacity: 0;
+	opacity: 1;
 }
 
 #matrix1 .fruit
 {
-	background-color: blue
+	background-color: blue;
+}
+#matrix2 .fruit
+{
+	background-color: red;
 }
 
 #matrix2 .designNumb
@@ -40,16 +44,16 @@
 		    left: 0px; /* Положение от правого края */
 }
 
-#rules {
+#resetgame {
 position: absolute; /* Абсолютное позиционирование */
 top: 0px; /* Положение от нижнего края */
 left: 60px; /* Положение от правого края */
 }
 
-#resetgame {
+#rules {
 position: absolute; /* Абсолютное позиционирование */
 top: 0px; /* Положение от нижнего края */
-left: 134px; /* Положение от правого края */
+left: 170px; /* Положение от правого края */
 }
 
 #matrix1
