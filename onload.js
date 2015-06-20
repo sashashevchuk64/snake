@@ -19,7 +19,7 @@ window.onload = function() {
 		//$("li").hide(3000).show(2000);
 		//$("li").toggle();
 		//$("li").animate({opacity: 0.5, height: '+=50'}, 3000);
-		$("#matrix1").attr('disabled','disabled');
+		$("#matrix1").animate({opacity: 0}, 1000);
 		$("#information").animate({opacity: 1}, 1000);
 	});
 	var m1 = new Matrix('matrix1', 20, 20);
