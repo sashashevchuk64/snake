@@ -57,16 +57,20 @@ function Matrix(containerId, rows, cols) {
 
 	this.setCell = function(row, col, val, cls) {
 		var index = this.getIndex(row, col);
-		val ? $("#" + this.containerId).children().eq(index).addClass(cls) :
-			$("#" + this.containerId).children().eq(index).removeClass(cls);
+		$("#" + this.containerId).children().eq(index).toggleClass(cls, val);
+		// val ? $("#" + this.containerId).children().eq(index).addClass(cls) :
+		// 	$("#" + this.containerId).children().eq(index).removeClass(cls);
 	}
 
 	this.getCell = function(row, col, cls) {
 		var index = this.getIndex(row, col);
 		return $("#" + this.containerId).children().eq(index).hasClass(cls);
 	}
-	this.generateObject = function(cls) {
-		this.setCell(Math.floor((Math.random() * 20) + 1), Math.floor((Math.random() * 20) + 1), true, cls);
+	this.generateObject = function(clsObject, clsMain) {
+		randomRow = Math.floor((Math.random() * 20) + 1);
+		randomCol = Math.floor((Math.random() * 20) + 1);
+		if (!this.getCell(randomRow, randomCol, clsMain))
+			this.setCell(randomRow, randomCol, true, clsObject);
 	}
 
 }

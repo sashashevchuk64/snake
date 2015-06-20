@@ -15,6 +15,13 @@ var KEY_CODE_PL2 = {
 };
 
 window.onload = function() {
+	$("#info").click(function(){
+		//$("li").hide(3000).show(2000);
+		//$("li").toggle();
+		//$("li").animate({opacity: 0.5, height: '+=50'}, 3000);
+		$("#matrix1").attr('disabled','disabled');
+		$("#information").animate({opacity: 1}, 1000);
+	});
 	var m1 = new Matrix('matrix1', 20, 20);
 	m1.create();
 
@@ -34,11 +41,15 @@ window.onload = function() {
 
 	var once;
 	var gameplay = function() {
+		if (((square.body.x > square.matrix.cols-1) && (square.course == 'down')) || ((square.body.y > square.matrix.cols-1) && (square.course == 'right')) || ((square.body.x < 2) && (square.course == 'up')) || ((square.body.y < 2) && (square.course == 'left'))) {
+			square.alive = false;
+		}
 		snake1.move();
 		once = false;
 
+
 		if (i % 40 == 0)
-			m1.generateObject('fruit');
+			m1.generateObject('fruit', 'designNumb');
 
 
 

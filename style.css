@@ -20,6 +20,11 @@
 	background-color: red
 }
 
+#information 
+{
+	opacity: 0;
+}
+
 #matrix1 .fruit
 {
 	background-color: blue
