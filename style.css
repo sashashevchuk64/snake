@@ -16,18 +16,53 @@
 
 #matrix1 .designNumb
 {
-	background-color: red;
+	background-color: #A2D12B;
+}
+
+#matrix1 .snakeHead
+{
+	background: url(face.png) no-repeat;
+}
+
+#matrix1 .snakeHead.bulletFire
+{
+	background: url(face.png) no-repeat;
+}
+
+#matrix1 .designNumb.bulletFire
+{
+	background-color: #A2D12B;
+}
+
+#matrix1 .stop
+{
+	background: url(stop.png) no-repeat;
+}
+
+#matrix1 .bulletFire
+{
+	background: url(bullet.png) no-repeat;
 }
 
 #information 
 {
 	opacity: 1;
 }
-
 #matrix1 .fruit
 {
-	background-color: blue;
+	background: url(banana.png) no-repeat;
 }
+
+#matrix1 .fire
+{
+	background: url(Fire.png) no-repeat;
+}
+
+#matrix1 .bomb
+{
+	background: url(Bomb.png) no-repeat;
+}
+
 #matrix2 .fruit
 {
 	background-color: red;

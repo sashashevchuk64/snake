@@ -1,5 +1,8 @@
 function Square(matrix, row, col, course, cls) {
-	this.body = { x:row, y: col};
+	this.body = {
+		x: row,
+		y: col
+	};
 	this.course = course;
 	this.matrix = matrix;
 	this.alive = true
@@ -29,7 +32,7 @@ function Square(matrix, row, col, course, cls) {
 			that.alive = false;
 		}
 		if (that.alive) {
-			// matrix.setCell(last_body[0], last_body[1], false, cls);
+			matrix.setCell(last_body.x, last_body.y, false, cls);
 			matrix.setCell(that.body.x, that.body.y, true, cls);
 		}
 	}
@@ -40,11 +43,47 @@ function Snake(matrix, sq1) {
 	this.matrix = matrix;
 	this.sq1 = sq1;
 
-	this.body = [{x :sq1.body.x, y : sq1.body.y }, {x : sq1.body.x, y : sq1.body.y-1}, {x : sq1.body.x, y: sq1.body.y-2}];
+	this.body = [{
+		x: sq1.body.x,
+		y: sq1.body.y
+	}, {
+		x: sq1.body.x,
+		y: sq1.body.y - 1
+	}, {
+		x: sq1.body.x,
+		y: sq1.body.y - 2
+	}];
 	var that = this;
 
-	this.snakeEatFruit = function() {
+	this.strike = function() {
+		var sqbul = new Square(that.matrix, that.body[0].x, that.body[0].y, that.sq1.course, "bulletFire");
+		sqbul.create();
+		var bullfhs = setInterval(function() {
+			if (sqbul.alive) {
+				sqbul.move();
+				if ((sqbul.matrix.getCell(sqbul.body.x, sqbul.body.y, "bomb")) && (sqbul.matrix.getCell(sqbul.body.x, sqbul.body.y, "bulletFire"))) {
+					sqbul.matrix.setCell(sqbul.body.x, sqbul.body.y, false, 'bomb bulletFire');
+					sqbul.matrix.setCell(sqbul.body.x, sqbul.body.y, true, 'fire');
+					setTimeout(function() {sqbul.matrix.setCell(sqbul.body.x, sqbul.body.y, false, 'fire');}, 150);
+					clearInterval(bullfhs);
+				}
 
+				if (((sqbul.body.x > sqbul.matrix.cols) && (sqbul.course == 'down')) || ((sqbul.body.y > sqbul.matrix.cols) && (sqbul.course == 'right')) || ((sqbul.body.x < 1) && (sqbul.course == 'up')) || ((sqbul.body.y < 1) && (sqbul.course == 'left'))) {
+					
+					clearInterval(bullfhs);
+					sqbul.matrix.setCell(sqbul.body.x, sqbul.body.y, false, "bulletFire");
+
+				}
+			} else {
+				clearInterval(bullfhs);
+				clearInterval(intervalGameplay);
+				setTimeout(function() {
+					alert("GAME OVER");
+					$("#resetgame").attr("disabled", false);
+				}, 1000);
+
+			};
+		}, 70);
 	}
 
 	this.move = function() {
@@ -55,11 +94,14 @@ function Snake(matrix, sq1) {
 		matrix.setCell(that.body[0].x, that.body[0].y, true, 'designNumb');
 		matrix.setCell(that.body[1].x, that.body[1].y, true, 'designNumb');
 		that.body.pop();
-		that.body.unshift({x: sq1.body.x, y:sq1.body.y});
+		that.body.unshift({
+			x: sq1.body.x,
+			y: sq1.body.y
+		});
 
 		var proverka = true;
 		// if ($("#matrix1").children().eq(189).hasClass("fruit") && $("#matrix1").children().eq(189).hasClass("designNumb") ){
-		if ((matrix.getCell(sq1.body.x, sq1.body.y, "fruit")) && (matrix.getCell(sq1.body.x, sq1.body.y, "designNumb"))) {
+		if ((matrix.getCell(sq1.body.x, sq1.body.y, "fruit")) && (matrix.getCell(sq1.body.x, sq1.body.y, "snakeHead"))) {
 			proverka = false;
 		}
 		if (sq1.alive) {
@@ -67,7 +109,10 @@ function Snake(matrix, sq1) {
 				matrix.setCell(last_x, last_y, false, 'designNumb');
 			} else {
 				matrix.setCell(sq1.body.x, sq1.body.y, false, 'fruit');
-				that.body.push({x: last_x, y: last_y });
+				that.body.push({
+					x: last_x,
+					y: last_y
+				});
 				proverka = true;
 			}
 		}
