@@ -1,29 +1,36 @@
-<html>
-<head>
-	<title>GAME</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="style.css"/>
-	<script src="http://yastatic.net/jquery/2.1.3/jquery.js"></script>
-	<script src="matrix.js"></script>
-	<script src="onload.js"></script>
-	<script src="square.js"></script>
-</head>
-<body>
-	<div id="matrix1"></div><!-- 
-	<div id="matrix2"></div> -->
-	<input type="submit" id="info" value="Нажми меня">
-	<div id="information">
-		<h1>
-			Привет!
-		</h1>
-		<h3>Коротко о сути игры:</h3>
-		Существуют 3 типа статических объектов:
-		<ul>
-			<li>мины</li>
-			<li>боеприпасы</li>
-			<li>аптечки</li>
-		</ul>
-		<h4>Удачной охоты!</h4>
-	</div>
-</body>
-</html>
+	<html>
+	<head>
+		<title>GAME</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="style.css"/>
+		<script src="http://yastatic.net/jquery/2.1.3/jquery.js"></script>
+		<script src="matrix.js"></script>
+		<script src="onload.js"></script>
+		<script src="square.js"></script>
+	</head>
+	<body>
+		<div id="gamecontent">
+			<br/>
+			<div id="matrix1" ></div>
+
+			<input type="submit" id="rules" value="Правила">
+			<input type="submit" id="startgame" value="Играть">
+			<input type="submit" id="resetgame" value="Перезапустить" disabled="true">
+			<div id="information">
+				<h1>
+					Привет!
+				</h1>
+				<h3>Коротко о сути игры:</h3>
+				Существуют 3 типа статических объектов:
+				<ul>
+					<li>мины</li>
+					<li>боеприпасы</li>
+					<li>аптечки</li>
+				</ul>
+				<h4>Удачной охоты!</h4>
+			</div>
+		</div><!-- 
+		<div id="matrix2"></div> -->
+
+	</body>
+	</html>

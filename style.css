@@ -5,7 +5,6 @@
 	border-top: 1px solid #999;
 	border-left: 1px solid #999;	
 }
-
 #matrix .cell
 {
 	float: left;
@@ -17,7 +16,7 @@
 
 #matrix1 .designNumb
 {
-	background-color: red
+	background-color: red;
 }
 
 #information 
@@ -33,6 +32,24 @@
 #matrix2 .designNumb
 {
 	background-color: blue
+}
+
+#startgame {
+		    position: absolute; /* Абсолютное позиционирование */
+		    top: 0px; /* Положение от нижнего края */
+		    left: 0px; /* Положение от правого края */
+}
+
+#rules {
+position: absolute; /* Абсолютное позиционирование */
+top: 0px; /* Положение от нижнего края */
+left: 60px; /* Положение от правого края */
+}
+
+#resetgame {
+position: absolute; /* Абсолютное позиционирование */
+top: 0px; /* Положение от нижнего края */
+left: 134px; /* Положение от правого края */
 }
 
 #matrix1

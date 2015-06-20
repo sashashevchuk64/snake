@@ -13,14 +13,52 @@ var KEY_CODE_PL2 = {
 	DOWN: 83
 
 };
+$("#information").hide();
+var intervalGameplay;
+$(document).ready(function() {
+	$("#resetgame").on("click", function() {
+	  window.location = window.location;
+	});
+	$("#startgame").on("click", function() {
+		$("#startgame").attr("disabled", true)
+		$("#rules").attr("disabled", true)
+		intervalGameplay = setInterval(gameplay, 200);
+	});
+	$("#rules").click(function() {
+		if ($("#matrix1").css('opacity') != 0) {
+			$("#matrix1").hide(1000);
+			$("#matrix1").animate({
+				opacity: 0
+			}, 1000);
+			$("#information").animate({
+				opacity: 1
+			}, 1000);
+		} else {
+			$("#matrix1").show(1000);
+			$("#matrix1").animate({
+				opacity: 1
+			}, 1000);
+			$("#information").animate({
+				opacity: 0
+			}, 1000);
+		}
 
-window.onload = function() {
-	$("#info").click(function(){
-		//$("li").hide(3000).show(2000);
-		//$("li").toggle();
-		//$("li").animate({opacity: 0.5, height: '+=50'}, 3000);
-		$("#matrix1").animate({opacity: 0}, 1000);
-		$("#information").animate({opacity: 1}, 1000);
+		// if ($("#matrix1").css('opacity') != 0) {
+		// 	$("#matrix1").animate({
+		// 		opacity: 0
+		// 	}, 1000);
+		// 	$("#information").animate({
+		// 		opacity: 1
+		// 	}, 1000);
+		// } else {
+		// 	$("#matrix1").animate({
+		// 		opacity: 1
+		// 	}, 1000);
+		// 	$("#information").animate({
+		// 		opacity: 0
+		// 	}, 1000);
+		// }
+
 	});
 	var m1 = new Matrix('matrix1', 20, 20);
 	m1.create();
@@ -41,7 +79,7 @@ window.onload = function() {
 
 	var once;
 	var gameplay = function() {
-		if (((square.body.x > square.matrix.cols-1) && (square.course == 'down')) || ((square.body.y > square.matrix.cols-1) && (square.course == 'right')) || ((square.body.x < 2) && (square.course == 'up')) || ((square.body.y < 2) && (square.course == 'left'))) {
+		if (((square.body.x > square.matrix.cols - 1) && (square.course == 'down')) || ((square.body.y > square.matrix.cols - 1) && (square.course == 'right')) || ((square.body.x < 2) && (square.course == 'up')) || ((square.body.y < 2) && (square.course == 'left'))) {
 			square.alive = false;
 		}
 		snake1.move();
@@ -59,37 +97,35 @@ window.onload = function() {
 		if (!square.alive) {
 			clearInterval(intervalGameplay)
 			alert("FIN");
+			$("#resetgame").attr("disabled", false)
 		}
 		i++;
-	}
-
-	var intervalGameplay = setInterval(gameplay, 200);
-
+	};
 	$(document).keyup(function(event) {
-			if (!once){
-				if (event.which == KEY_CODE_PL1.LEFT) {
-					if (square.course != 'right')
-						square.course = 'left';
-					once = true;
+		if (!once) {
+			if (event.which == KEY_CODE_PL1.LEFT) {
+				if (square.course != 'right')
+					square.course = 'left';
+				once = true;
 
-				} else if (event.which == KEY_CODE_PL1.RIGHT) {
-					if (square.course != 'left')
-						square.course = 'right';
-					once = true;
+			} else if (event.which == KEY_CODE_PL1.RIGHT) {
+				if (square.course != 'left')
+					square.course = 'right';
+				once = true;
 
-				} else if (event.which == KEY_CODE_PL1.UP) {
-					if (square.course != 'down')
-						square.course = 'up';
-					once = true;
+			} else if (event.which == KEY_CODE_PL1.UP) {
+				if (square.course != 'down')
+					square.course = 'up';
+				once = true;
 
-				} else if (event.which == KEY_CODE_PL1.DOWN) {
-					if (square.course != 'up')
-						square.course = 'down';
-					once = true;
+			} else if (event.which == KEY_CODE_PL1.DOWN) {
+				if (square.course != 'up')
+					square.course = 'down';
+				once = true;
 
-				} 
 			}
-		});
+		}
+	});
 
 
-}
+});
