@@ -170,7 +170,6 @@ $(document).ready(function() {
 					setTimeout(function() {
 						snake.matrix.setCell(snake.body.x, snake.body.y, false, 'fire');
 					}, 150);
-
 		}
 
 		if (snake.matrix.getCell(snake.sq1.body.x, snake.sq1.body.y, "bomb snakeHead")){
