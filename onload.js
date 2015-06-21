@@ -21,6 +21,8 @@ $(document).ready(function() {
 		window.location = window.location;
 	});
 	$("#startgame").on("click", function() {
+		var square = new Square(m1, 1, 4, 'right', 'snakeHead');
+		var snake1 = new Snake(m1, square);
 		$("#startgame").attr("disabled", true);
 		$("#rules").attr("disabled", true);
 		intervalGameplay = setInterval(function() {
@@ -72,14 +74,14 @@ $(document).ready(function() {
 	var m2 = new Matrix('matrix2', 10, 10);
 	m2.create();
 
-	var square = new Square(m1, 1, 4, 'right', 'snakeHead');
+	
 	// square.create();
 
 
 
 	var square2 = new Square(m2, 1, 3, 'right', 'designNumb');
 
-	var snake1 = new Snake(m1, square);
+	
 	var i = 0;
 
 	var snake2 = new Snake(m2, square2);
@@ -91,28 +93,28 @@ $(document).ready(function() {
 			if (!once) {
 				if (schekchit) {
 					if (event.which == KEY_CODE_PL1.STRIKE) {
-						snake1.strike();
+						snake.strike();
 						schekchit--;
 					}
 				};
 				if (event.which == KEY_CODE_PL1.LEFT) {
-					if (square.course != 'right')
-						square.course = 'left';
+					if (snake.sq1.course != 'right')
+						snake.sq1.course = 'left';
 					once = true;
 
 				} else if (event.which == KEY_CODE_PL1.RIGHT) {
-					if (square.course != 'left')
-						square.course = 'right';
+					if (snake.sq1.course != 'left')
+						snake.sq1.course = 'right';
 					once = true;
 
 				} else if (event.which == KEY_CODE_PL1.UP) {
-					if (square.course != 'down')
-						square.course = 'up';
+					if (snake.sq1.course != 'down')
+						snake.sq1.course = 'up';
 					once = true;
 
 				} else if (event.which == KEY_CODE_PL1.DOWN) {
-					if (square.course != 'up')
-						square.course = 'down';
+					if (snake.sq1.course != 'up')
+						snake.sq1.course = 'down';
 					once = true;
 
 				} else if (event.which == KEY_CODE_PL2.RIGHT) {

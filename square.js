@@ -61,15 +61,28 @@ function Snake(matrix, sq1) {
 		var bullfhs = setInterval(function() {
 			if (sqbul.alive) {
 				sqbul.move();
-				if ((sqbul.matrix.getCell(sqbul.body.x, sqbul.body.y, "bomb")) && (sqbul.matrix.getCell(sqbul.body.x, sqbul.body.y, "bulletFire"))) {
+				if (sqbul.matrix.getCell(sqbul.body.x, sqbul.body.y, "bomb bulletFire")) {
 					sqbul.matrix.setCell(sqbul.body.x, sqbul.body.y, false, 'bomb bulletFire');
 					sqbul.matrix.setCell(sqbul.body.x, sqbul.body.y, true, 'fire');
-					setTimeout(function() {sqbul.matrix.setCell(sqbul.body.x, sqbul.body.y, false, 'fire');}, 150);
+					document.getElementById("audiotest").play();
+					setTimeout(function() {
+						sqbul.matrix.setCell(sqbul.body.x, sqbul.body.y, false, 'fire');
+					}, 150);
+					clearInterval(bullfhs);
+
+				}
+
+				if (sqbul.matrix.getCell(sqbul.body.x, sqbul.body.y, "fruit bulletFire")) {
+					sqbul.matrix.setCell(sqbul.body.x, sqbul.body.y, false, 'fruit bulletFire');
+					sqbul.matrix.setCell(sqbul.body.x, sqbul.body.y, true, 'fire');
+					setTimeout(function() {
+						sqbul.matrix.setCell(sqbul.body.x, sqbul.body.y, false, 'fire');
+					}, 150);
 					clearInterval(bullfhs);
 				}
 
 				if (((sqbul.body.x > sqbul.matrix.cols) && (sqbul.course == 'down')) || ((sqbul.body.y > sqbul.matrix.cols) && (sqbul.course == 'right')) || ((sqbul.body.x < 1) && (sqbul.course == 'up')) || ((sqbul.body.y < 1) && (sqbul.course == 'left'))) {
-					
+
 					clearInterval(bullfhs);
 					sqbul.matrix.setCell(sqbul.body.x, sqbul.body.y, false, "bulletFire");
 

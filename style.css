@@ -21,12 +21,12 @@
 
 #matrix1 .snakeHead
 {
-	background: url(face.png) no-repeat;
+	background: url(css/face.png) no-repeat;
 }
 
 #matrix1 .snakeHead.bulletFire
 {
-	background: url(face.png) no-repeat;
+	background: url(css/face.png) no-repeat;
 }
 
 #matrix1 .designNumb.bulletFire
@@ -36,12 +36,12 @@
 
 #matrix1 .stop
 {
-	background: url(stop.png) no-repeat;
+	background: url(css/stop.png) no-repeat;
 }
 
 #matrix1 .bulletFire
 {
-	background: url(bullet.png) no-repeat;
+	background: url(css/bullet.png) no-repeat;
 }
 
 #information 
@@ -50,17 +50,17 @@
 }
 #matrix1 .fruit
 {
-	background: url(banana.png) no-repeat;
+	background: url(css/banana.png) no-repeat;
 }
 
 #matrix1 .fire
 {
-	background: url(Fire.png) no-repeat;
+	background: url(css/fire.png) no-repeat;
 }
 
 #matrix1 .bomb
 {
-	background: url(Bomb.png) no-repeat;
+	background: url(css/bomb.png) no-repeat;
 }
 
 #matrix2 .fruit
@@ -73,23 +73,7 @@
 	background-color: blue
 }
 
-#startgame {
-		    position: absolute; /* Абсолютное позиционирование */
-		    top: 0px; /* Положение от нижнего края */
-		    left: 0px; /* Положение от правого края */
-}
 
-#resetgame {
-position: absolute; /* Абсолютное позиционирование */
-top: 0px; /* Положение от нижнего края */
-left: 60px; /* Положение от правого края */
-}
-
-#rules {
-position: absolute; /* Абсолютное позиционирование */
-top: 0px; /* Положение от нижнего края */
-left: 170px; /* Положение от правого края */
-}
 
 #matrix1
 {
