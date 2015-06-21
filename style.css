@@ -34,6 +34,11 @@
 	background-color: #A2D12B;
 }
 
+#matrix1 .ammunition
+{
+	background: url(css/ammun.png) no-repeat;
+}
+
 #matrix1 .stop
 {
 	background: url(css/stop.png) no-repeat;

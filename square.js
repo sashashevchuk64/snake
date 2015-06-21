@@ -81,6 +81,15 @@ function Snake(matrix, sq1) {
 					clearInterval(bullfhs);
 				}
 
+				if (sqbul.matrix.getCell(sqbul.body.x, sqbul.body.y, "ammunition bulletFire")) {
+					sqbul.matrix.setCell(sqbul.body.x, sqbul.body.y, false, 'ammunition bulletFire');
+					sqbul.matrix.setCell(sqbul.body.x, sqbul.body.y, true, 'fire');
+					setTimeout(function() {
+						sqbul.matrix.setCell(sqbul.body.x, sqbul.body.y, false, 'fire');
+					}, 150);
+					clearInterval(bullfhs);
+				}
+
 				if (((sqbul.body.x > sqbul.matrix.cols) && (sqbul.course == 'down')) || ((sqbul.body.y > sqbul.matrix.cols) && (sqbul.course == 'right')) || ((sqbul.body.x < 1) && (sqbul.course == 'up')) || ((sqbul.body.y < 1) && (sqbul.course == 'left'))) {
 
 					clearInterval(bullfhs);

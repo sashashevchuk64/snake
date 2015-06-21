@@ -21,8 +21,6 @@ $(document).ready(function() {
 		window.location = window.location;
 	});
 	$("#startgame").on("click", function() {
-		var square = new Square(m1, 1, 4, 'right', 'snakeHead');
-		var snake1 = new Snake(m1, square);
 		$("#startgame").attr("disabled", true);
 		$("#rules").attr("disabled", true);
 		intervalGameplay = setInterval(function() {
@@ -74,6 +72,9 @@ $(document).ready(function() {
 	var m2 = new Matrix('matrix2', 10, 10);
 	m2.create();
 
+
+	var square = new Square(m1, 1, 4, 'right', 'snakeHead');
+	var snake1 = new Snake(m1, square);
 	
 	// square.create();
 
@@ -86,7 +87,7 @@ $(document).ready(function() {
 
 	var snake2 = new Snake(m2, square2);
 	var i = 0;
-	var schekchit = 5;
+	var schekchit = 10;
 	var once;
 	var gameplay = function(snake) {
 		$(document).keyup(function(event) {
@@ -158,11 +159,27 @@ $(document).ready(function() {
 		if (i % 70 == 0)
 			snake.matrix.generateObject('bomb', 'designNumb');
 
-		if ((snake.matrix.getCell(snake.sq1.body.x, snake.sq1.body.y, "bomb")) && (snake.matrix.getCell(snake.sq1.body.x, snake.sq1.body.y, "snakeHead"))) {
+		if (i % 67 == 0)
+			snake.matrix.generateObject('ammunition', 'designNumb');
+
+		if (snake.matrix.getCell(snake.sq1.body.x, snake.sq1.body.y, "ammunition snakeHead")){
+			document.getElementById("audiozatvor").play();
+			snake.matrix.setCell(snake.sq1.body.x, snake.sq1.body.y, false, 'ammunition');
+			schekchit++;
+			snake.matrix.setCell(snake.body.x, snake.body.y, true, 'fire');
+					setTimeout(function() {
+						snake.matrix.setCell(snake.body.x, snake.body.y, false, 'fire');
+					}, 150);
+
+		}
+
+		if (snake.matrix.getCell(snake.sq1.body.x, snake.sq1.body.y, "bomb snakeHead")){
 			snake.matrix.setCell(snake.sq1.body.x, snake.sq1.body.y, false, 'bomb');
+			document.getElementById("audiotest").play();
 			for (i = 0; i < snake.body.length; i++) {
 				snake.matrix.setCell(snake.body[i].x, snake.body[i].y, true, 'fire');
 			};
+
 			snake.sq1.alive = false;
 
 
